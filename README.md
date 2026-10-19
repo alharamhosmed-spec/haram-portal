@@ -15,7 +15,7 @@
 | `index.html` | الغلاف: شاشة إقلاع + إطار النظام + شاشة «لا يوجد اتصال» + زر التثبيت |
 | `manifest.webmanifest` | اسم التطبيق وأيقوناته وألوانه |
 | `sw.js` | يخزّن الغلاف فقط ليفتح بسرعة (لا يخزّن أي بيانات) |
-| `icons/` | الأيقونات (192 / 512 / maskable / آيفون / favicon) |
+| `icon-*.png` · `apple-touch-icon.png` · `favicon-32.png` | الأيقونات (في نفس المكان، بدون مجلد) (192 / 512 / maskable / آيفون / favicon) |
 | `tools/make_icons.py` | مولّد الأيقونات (اختياري) |
 | `.nojekyll` | يمنع GitHub من معالجة الملفات |
 
@@ -37,7 +37,7 @@ GAS_URL: 'https://script.google.com/macros/s/XXXXXXXX/exec',
 
 ### 3) ارفع على GitHub
 1. github.com ← **New repository** ← الاسم: `haram-portal` ← Public ← Create.
-2. **Add file ← Upload files** ← اسحب كل محتوى المجلد (بما فيه `icons` و `.nojekyll`) ← Commit.
+2. **Add file ← Upload files** ← اسحب كل محتوى المجلد (كل الملفات في مكان واحد، بدون مجلدات) ← Commit.
 3. **Settings ← Pages** ← Source: `Deploy from a branch` ← Branch: `main` / `(root)` ← Save.
 4. بعد دقيقة إلى دقيقتين يصير الرابط:
    `https://<اسم-حسابك>.github.io/haram-portal/`
