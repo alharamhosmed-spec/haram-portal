@@ -1,0 +1,43 @@
+{
+  "id": "naqaa-app",
+  "name": "نقاء — نظافة دورات المياه",
+  "short_name": "نقاء",
+  "description": "نقاء — إدارة ومراقبة نظافة دورات المياه والنفايات غير الطبية بمستشفى الحرم. مدير إدارة المشاريع: م. أحمد بندر الردادي",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "orientation": "any",
+  "background_color": "#0F2A3F",
+  "theme_color": "#0F2A3F",
+  "categories": [
+    "productivity",
+    "business",
+    "medical"
+  ],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -4,7 +4,7 @@
  * عند أي تعديل على ملفات الغلاف: زِد رقم VERSION.
  */
 'use strict';
-var VERSION = 'haram-portal-v1.0.2';
+var VERSION = 'haram-portal-v1.0.3';
 var SHELL = [
   './',
   './index.html',
@@ -38,6 +38,9 @@ self.addEventListener('fetch', function (e) {
   if (req.method !== 'GET') return;
   var url = new URL(req.url);
   if (url.origin !== self.location.origin) return; // Google وغيره: بدون تدخل
+  // التطبيقات الفرعية (مجلدات مثل naqaa/) لها Service Worker خاص — لا نتدخل في طلباتها
+  var base = new URL('./', self.location).pathname;
+  if (url.pathname.indexOf(base) === 0 && url.pathname.slice(base.length).indexOf('/') !== -1) return;
 
   // صفحة الغلاف: الشبكة أولاً (عشان التحديثات توصل) ثم النسخة المخزنة
   if (req.mode === 'navigate') {

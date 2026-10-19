@@ -1,6 +1,6 @@
 """
 مولّد أيقونات «نمط التطبيق» — بدون نصوص (تبقى واضحة في كل المقاسات)
-الاستخدام:  python3 tools/make_icons.py [glyph]
+الاستخدام:  python3 tools/make_icons.py [glyph] [مجلد-التطبيق]
 glyph: cross (افتراضي) | box | shield | doc | wrench | user | drop | key | grid
 """
 import sys, os
@@ -44,8 +44,15 @@ def glyph(d, kind, cx, cy, s, col):
         d.ellipse([cx - h*.35, cy - h*.8, cx + h*.35, cy - h*.1], fill=col)
         d.pieslice([cx - h*.75, cy + h*.0, cx + h*.75, cy + h*1.4], 180, 360, fill=col)
     elif kind == 'drop':
-        d.polygon([(cx, cy - h*.8), (cx + h*.5, cy + h*.05), (cx - h*.5, cy + h*.05)], fill=col)
-        d.ellipse([cx - h*.52, cy - h*.25, cx + h*.52, cy + h*.75], fill=col)
+        # قطرة: دائرة + مثلث مماسّ لها تماماً (بدون درجات عند نقطة الالتقاء)
+        import math
+        r = h * .52; ccx, ccy = cx, cy + h * .23; top = cy - h * .82
+        th = math.acos(r / (ccy - top))
+        pts = [(cx, top)]
+        for i in range(0, 41):
+            a = th + (2 * math.pi - 2 * th) * i / 40  # من نقطة المماس اليمنى حول الأسفل إلى اليسرى
+            pts.append((ccx + r * math.sin(a), ccy - r * math.cos(a)))
+        d.polygon(pts, fill=col)
     elif kind == 'key':
         d.ellipse([cx - h*.75, cy - h*.35, cx - h*.05, cy + h*.35], outline=col, width=int(w))
         d.line([cx - h*.05, cy, cx + h*.75, cy], fill=col, width=int(w))
@@ -78,7 +85,9 @@ def icon(n, kind, maskable=False, transparent=False):
 
 def main():
     kind = sys.argv[1] if len(sys.argv) > 1 else 'cross'
-    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
+    # الوسيط الثاني (اختياري): مجلد التطبيق الفرعي، مثل: python3 tools/make_icons.py drop naqaa
+    root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
+    out = os.path.join(root, sys.argv[2]) if len(sys.argv) > 2 else root
     os.makedirs(out, exist_ok=True)
     icon(192, kind).save(os.path.join(out, 'icon-192.png'))
     icon(512, kind).save(os.path.join(out, 'icon-512.png'))
