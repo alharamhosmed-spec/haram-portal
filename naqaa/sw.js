@@ -4,7 +4,7 @@
  * عند أي تعديل على ملفات الغلاف: زِد رقم VERSION.
  */
 'use strict';
-var VERSION = 'naqaa-v1.0.1';
+var VERSION = 'naqaa-v1.0.2';
 var SHELL = [
   './',
   './index.html',
@@ -42,7 +42,9 @@ self.addEventListener('fetch', function (e) {
   // صفحة الغلاف: الشبكة أولاً (عشان التحديثات توصل) ثم النسخة المخزنة
   if (req.mode === 'navigate') {
     e.respondWith(
-      fetch(req).then(function (res) {
+      // no-cache: يتجاوز كاش المتصفح (GitHub Pages يخزّن الصفحات 10 دقائق) فيوصل أي تعديل فوراً
+      fetch(req.url, { cache: 'no-cache', credentials: 'same-origin' }).then(function (res) {
+        if (!res || !res.ok) throw new Error('bad');
         var copy = res.clone();
         caches.open(VERSION).then(function (c) { c.put('./index.html', copy); });
         return res;
