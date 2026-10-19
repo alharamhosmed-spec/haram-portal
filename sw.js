@@ -4,16 +4,16 @@
  * عند أي تعديل على ملفات الغلاف: زِد رقم VERSION.
  */
 'use strict';
-var VERSION = 'haram-portal-v1.0.1';
+var VERSION = 'haram-portal-v1.0.2';
 var SHELL = [
   './',
   './index.html',
   './manifest.webmanifest',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
-  './icons/icon-maskable-512.png',
-  './icons/apple-touch-icon.png',
-  './icons/favicon-32.png'
+  './icon-192.png',
+  './icon-512.png',
+  './icon-maskable-512.png',
+  './apple-touch-icon.png',
+  './favicon-32.png'
 ];
 
 self.addEventListener('install', function (e) {
