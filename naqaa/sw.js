@@ -4,7 +4,7 @@
  * عند أي تعديل على ملفات الغلاف: زِد رقم VERSION.
  */
 'use strict';
-var VERSION = 'naqaa-v1.0.0';
+var VERSION = 'naqaa-v1.0.1';
 var SHELL = [
   './',
   './index.html',
