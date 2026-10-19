@@ -4,7 +4,7 @@
  * عند أي تعديل على ملفات الغلاف: زِد رقم VERSION.
  */
 'use strict';
-var VERSION = 'haram-portal-v1.0.0';
+var VERSION = 'haram-portal-v1.0.1';
 var SHELL = [
   './',
   './index.html',
@@ -17,7 +17,12 @@ var SHELL = [
 ];
 
 self.addEventListener('install', function (e) {
-  e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(SHELL); }).then(function () { return self.skipWaiting(); }));
+  // كل ملف لحاله: لو ملف واحد ناقص (مثلاً أيقونة) ما يفشل تثبيت الـ Service Worker كله
+  e.waitUntil(
+    caches.open(VERSION).then(function (c) {
+      return Promise.all(SHELL.map(function (u) { return c.add(u).catch(function () {}); }));
+    }).then(function () { return self.skipWaiting(); })
+  );
 });
 
 self.addEventListener('activate', function (e) {
