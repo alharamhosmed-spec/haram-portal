@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "بوابة الحرم — أنظمة إدارة المشروع",
+  "short_name": "بوابة الحرم",
+  "description": "بوابة أنظمة إدارة المشروع — عقد التشغيل والصيانة غير الطبي بمستشفى الحرم. مدير إدارة المشاريع: م. أحمد بندر الردادي",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#0F2A3F",
+  "theme_color": "#0F2A3F",
+  "categories": ["productivity", "business", "medical"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
